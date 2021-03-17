@@ -1,0 +1,772 @@
+swagger: "2.0"
+info:
+  title: Party Role Management
+  description: This is Swagger UI environment generated for the TMF Party Role Management specification
+  version: '1.0'
+host: serverRoot
+basePath: /partyRoleManagement/v1/
+schemes:
+  - https
+consumes:
+  - application/json;charset=utf-8
+produces:
+  - application/json;charset=utf-8
+tags:
+  - name: partyRole
+paths:
+  /partyRole:
+    get:
+      operationId: listPartyRole
+      summary: List or find PartyRole objects
+      description: This operation list or find PartyRole entities
+      tags:
+        - partyRole
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          type: integer
+        - name: engagedParty.role
+          description: Required for filtering
+          required: false
+          in: query
+          type: string
+        - name: engagedParty.id
+          description: Required for filtering
+          required: false
+          in: query
+          type: string
+        - name: communicationId
+          description: Required for filtering
+          required: false
+          in: query
+          type: string
+        - name: externalId
+          description: Required for filtering
+          required: false
+          in: query
+          type: string
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              type: integer
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PartyRole'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+        '405':
+          description: Method Not allowed
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      operationId: createPartyRole
+      summary: Creates a PartyRole
+      description: This operation creates a PartyRole entity.
+      tags:
+        - partyRole
+      parameters:
+        - name: RequestBody
+          description: The PartyRole to be created
+          required: true
+          schema:
+            $ref: '#/definitions/PartyRole_Create'
+          in: body
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/PartyRole'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Error'
+        '405':
+          description: Method Not allowed
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  '/partyRole/{id}':
+    get:
+      operationId: retrievePartyRole
+      summary: Retrieves a PartyRole by ID
+      description: This operation retrieves a PartyRole entity. Attribute selection is enabled for all first level attributes.
+      tags:
+        - partyRole
+      parameters:
+        - name: id
+          description: Identifier of the PartyRole
+          required: true
+          type: string
+          in: path
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          type: string
+          in: query
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/PartyRole'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+        '405':
+          description: Method Not allowed
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    patch:
+      operationId: patchPartyRole
+      summary: Updates partially a PartyRole
+      description: This operation updates partially a PartyRole entity.
+      tags:
+        - partyRole
+      consumes:
+        - application/json-patch+json;charset=utf-8
+      parameters:
+        - name: id
+          description: Identifier of the PartyRole
+          required: true
+          type: string
+          in: path
+        - in: body
+          name: RequestBody
+          description: The PartyRole to be updated
+          required: true
+          schema:
+            $ref: '#/definitions/PatchBody'
+      responses:
+        '200':
+          description: Updated
+          schema:
+            $ref: '#/definitions/PartyRole'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+        '405':
+          description: Method Not allowed
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      operationId: deletePartyRole
+      summary: Deletes a PartyRole
+      description: This operation deletes a PartyRole entity.
+      tags:
+        - partyRole
+      parameters:
+        - name: id
+          description: Identifier of the PartyRole
+          required: true
+          type: string
+          in: path
+      responses:
+        '204':
+          description: Deleted
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+        '405':
+          description: Method Not allowed
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  AccountRef_Response:
+    type: object
+    description: Account reference. A account may be a party account, billing account or a financial account.
+    properties:    
+      href:
+        type: string
+        description: Reference of the account
+    allOf:
+      - $ref: '#/definitions/AccountRef'
+  AccountRef_Create:
+    type: object
+    description: Account reference. A account may be a party account, billing account or a financial account.
+    required:
+      - id
+    allOf:
+      - $ref: '#/definitions/AccountRef'
+  AccountRef:
+    type: object
+    description: Account reference. A account may be a party account, billing account or a financial account.
+    properties:
+      id:
+        type: string
+        description: Unique identifier of the account
+      description:
+        type: string
+        description: Detailed description of the account
+      name:
+        type: string
+        description: Name of the account
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+      '@referredType':
+        type: string
+        description: The actual type of the target instance when needed for disambiguation.
+  AgreementRef_Create:
+    type: object
+    description: 'Contract reference. A contract represents a technical contract involves a number of other business entities, such as products, services, and resources and/or their specifications.'
+    required:
+      - id
+    allOf:
+      - $ref: '#/definitions/AgreementRef' 
+  AgreementRef_Response:
+    type: object
+    description: 'Contract reference. A contract represents a technical contract involves a number of other business entities, such as products, services, and resources and/or their specifications.'
+    properties:
+      href:
+        type: string
+        description: Reference of the contract.
+    allOf:
+      - $ref: '#/definitions/AgreementRef' 
+  AgreementRef:
+    type: object
+    description: 'Contract reference. A contract represents a technical contract involves a number of other business entities, such as products, services, and resources and/or their specifications.'
+    properties:
+      id:
+        type: string
+        description: Unique identifier of a contract.
+      name:
+        type: string
+        description: Name of the contract
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+      '@referredType':
+        type: string
+        description: The actual type of the target instance when needed for disambiguation.
+  Any: {}
+  Characteristic:
+    type: object
+    description: Describes a given characteristic of an object or entity through a name/value pair.
+    properties:
+      name:
+        type: string
+        description: Name of the characteristic
+      valueType:
+        type: string
+        description: Data type of the value of the characteristic
+      value:
+        $ref: '#/definitions/Any'
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+  Characteristic_Create:
+    type: object
+    description: Describes a given characteristic of an object or entity through a name/value pair.
+    required:
+      - name
+      - value
+    allOf:
+      - $ref: '#/definitions/Characteristic'
+  CreditProfile_Create:
+    type: object
+    description: 'Credit profile for the party (containing credit scoring, ...). By default only the current credit profile  is retrieved. It can be used as a list to give the party credit profiles history, the first one in the list will be the current one.'
+    required:
+      - creditProfileDate
+      - validFor
+    allOf:
+      - $ref: '#/definitions/CreditProfile'
+  CreditProfile:
+    type: object
+    description: 'Credit profile for the party (containing credit scoring, ...). By default only the current credit profile  is retrieved. It can be used as a list to give the party credit profiles history, the first one in the list will be the current one.'
+    properties:
+      creditProfileDate:
+        type: string
+        format: date-time
+        description: The date the profile was established
+      creditRiskRating:
+        type: integer
+        description: This is an integer whose value is used to rate the risk
+      creditScore:
+        type: integer
+        description: A measure of a person or organizations creditworthiness calculated on the basis of a combination of factors such as their income and credit history
+      validFor:
+        $ref: '#/definitions/TimePeriod'
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+  PatchBody:
+    type: array
+    items:
+      $ref: "#/definitions/PatchDocument"
+  PatchDocument:
+    type: object
+    description: A JSONPatch document as defined by RFC 6902 
+    required:
+     - "op"
+     - "path"
+    properties: 
+     op: 
+      type: string 
+      description: The operation to be performed 
+      enum:
+       - "add"
+       - "remove"
+       - "replace"
+       - "move"
+       - "copy"
+       - "test"
+     path: 
+      type: string 
+      description: A JSON-Pointer 
+     value: 
+      type: object 
+      description: The value to be used within the operations.
+  PartyRole:
+    type: object
+    description: The part played by a party in a given context.
+    properties:
+      id:
+        type: string
+        description: Unique identifier for PartyRoles
+      href:
+        type: string
+        description: Url used to reference the party role.
+      externalId:
+        type: string
+        description: id of the external system.
+      name:
+        type: string
+        description: 'A word, term, or phrase by which the PartyRole is known and distinguished from other PartyRoles.'
+      status:
+        type: string
+        description: 'Used to track the lifecycle status of the party role.'
+      statusReason:
+        type: string
+        description: 'A string providing an explanation on the value of the status lifecycle. For instance if the status is Rejected, statusReason will provide the reason for rejection.'
+      account:
+        type: array
+        items:
+          $ref: '#/definitions/AccountRef_Response'
+      agreement:
+        type: array
+        items:
+          $ref: '#/definitions/AgreementRef_Response'
+      characteristic:
+        type: array
+        items:
+          $ref: '#/definitions/Characteristic'
+        description: Describes the characteristic of a party role.
+      contactMediumAssociations:
+        type: array
+        description: An array of Contact Medium associations applicable for this entity along with their validity period.
+        items:
+          $ref: '#/definitions/ContactMediumAssociation'
+        minItems: 0
+      creditProfile:
+        type: array
+        items:
+          $ref: '#/definitions/CreditProfile'
+      engagedParty:
+        $ref: '#/definitions/RelatedParty'
+      paymentMethod:
+        type: array
+        items:
+          $ref: '#/definitions/PaymentMethodRef_Response'
+      relatedParty:
+        type: array
+        items:
+          $ref: '#/definitions/RelatedParty'
+      validFor:
+        $ref: '#/definitions/TimePeriod'
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+  PartyRole_Create:
+    type: object
+    description: The part played by a party in a given context.
+    required:
+      - engagedParty
+    properties:
+      id:
+        type: string
+        description: Unique identifier for PartyRoles
+      externalId:
+        type: string
+        description: id of the external system.
+      name:
+        type: string
+        description: 'A word, term, or phrase by which the PartyRole is known and distinguished from other PartyRoles.'
+      status:
+        type: string
+        description: 'Used to track the lifecycle status of the party role.'
+      statusReason:
+        type: string
+        description: 'A string providing an explanation on the value of the status lifecycle. For instance if the status is Rejected, statusReason will provide the reason for rejection.'
+      characteristic:
+        type: array
+        items:
+          $ref: '#/definitions/Characteristic_Create'
+        description: Describes the characteristic of a party role.
+      contactMediumAssociations:
+        type: array
+        items:
+          $ref: '#/definitions/ContactMediumAssociation_Create'
+      account:
+        type: array
+        items:
+          $ref: '#/definitions/AccountRef_Create'
+      agreement:
+        type: array
+        items:
+          $ref: '#/definitions/AgreementRef_Create'
+      paymentMethod:
+        type: array
+        items:
+          $ref: '#/definitions/PaymentMethodRef_Create'
+      engagedParty:
+        $ref: '#/definitions/EngagedParty_Create'
+      relatedParty:
+        type: array
+        items:
+          $ref: '#/definitions/RelatedParty_Create'
+      validFor:
+        $ref: '#/definitions/TimePeriod'
+      creditProfile:
+        type: array
+        items:
+          $ref: '#/definitions/CreditProfile_Create'
+  PaymentMethodRef_Create:
+    type: object
+    description: PaymentMethod reference. A payment method defines a specific mean of payment (e.g direct debit).
+    required:
+      - id
+    allOf:
+      - $ref: '#/definitions/PaymentMethodRef'
+  PaymentMethodRef_Response:
+    type: object
+    description: PaymentMethod reference. A payment method defines a specific mean of payment (e.g direct debit).
+    properties:
+      href:
+        type: string
+        description: Reference of the payment mean
+    allOf:
+      - $ref: '#/definitions/PaymentMethodRef'
+  PaymentMethodRef:
+    type: object
+    description: PaymentMethod reference. A payment method defines a specific mean of payment (e.g direct debit).
+    properties:
+      id:
+        type: string
+        description: Unique identifier of the payment mean
+      name:
+        type: string
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+      '@referredType':
+        type: string
+        description: The actual type of the target instance when needed for disambiguation.
+  RelatedParty:
+    type: object
+    description: Related Entity reference. A related party defines party or party role linked to a specific entity.
+    properties:
+      id:
+        type: string
+        description: Unique identifier of a related entity.
+      href:
+        type: string
+        description: Reference of the related entity.
+      name:
+        type: string
+        description: Name of the related entity.
+      role:
+        type: string
+        description: Role played by the related party
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+      '@referredType':
+        type: string
+        description: The actual type of the target instance when needed for disambiguation.
+  EngagedParty_Create:
+    type: object
+    description: Related Entity reference. A related party defines party or party role linked to a specific entity.
+    required:
+      - id
+      - role
+    allOf:
+      - $ref: '#/definitions/RelatedParty_Create'
+  RelatedParty_Create:
+    type: object
+    description: Related Entity reference. A related party defines party or party role linked to a specific entity.
+    required:
+      - id
+      - role
+    properties:
+      id:
+        type: string
+        description: Unique identifier of a related entity.
+      name:
+        type: string
+        description: Name of the related entity.
+      role:
+        type: string
+        description: Role played by the related party
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+      '@referredType':
+        type: string
+        description: The actual type of the target instance when needed for disambiguation.
+  TimePeriod:
+    type: object
+    description: 'A period of time, either as a deadline (endDateTime only) a startDateTime only, or both'
+    properties:
+      endDateTime:
+        type: string
+        format: date-time
+        description: 'End of the time period, using IETC-RFC-3339 format'
+      startDateTime:
+        type: string
+        format: date-time
+        description: 'Start of the time period, using IETC-RFC-3339 format. If you define a start, you must also define an end'
+  ContactMediumAssociation:
+    type: object
+    properties:
+      id:
+        description: id, primary key of the association
+        type: string
+      contactMediumId:
+        description: The unique id of the contact medium
+        type: string
+      contactRole:
+        type: string
+        description: The role of this ContactMediumAssociation in relation to the customer.
+      enabled:
+        type: boolean
+        description: Indicates if this ContactMediumAssociation is enanbled or not
+      language:
+        type: string
+        description: The language used for this Contact Medium Association. Expressed as a 2 letter ISO 639-1 code.
+      validFor:
+        $ref: '#/definitions/TimePeriod'
+      enabledDateTimePeriods:
+        type: array
+        description: An array of date time period during which this ContactMediumAssociation is enabled. Only takes effect if the ContactMediumAssociation is not disabled
+        items:
+          $ref: '#/definitions/TimePeriod'
+      disabledDateTimePeriods:
+        type: array
+        description: An array of date time period during which this ContactMediumAssociation is disabled. Only takes effect if the ContactMediumAssociation is not disabled
+        items:
+          $ref: '#/definitions/TimePeriod'
+      disabledWeekDayTimePeriods:
+        type: array
+        description: An array week day and an associated time period during which this ContactMediumAssociation is disabled. Only takes effect if the ContactMediumAssociation is not disabled
+        items:
+          $ref: '#/definitions/WeekDayTimePeriod'
+      href:
+        type: string
+        description: Reference of the account
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+  ContactMediumAssociation_Create:
+    type: object
+    required:
+      - contactMediumId
+      - contactRole
+    properties:
+      contactMediumId:
+        description: The unique id of the contact medium
+        type: string
+      contactRole:
+        type: string
+        description: The role of this ContactMediumAssociation in relation to the customer.
+      enabled:
+        type: boolean
+        description: Indicates if this ContactMediumAssociation is enanbled or not
+      language:
+        type: string
+        description: The language used for this Contact Medium Association. Expressed as a 2 letter ISO 639-1 code.
+      validFor:
+        $ref: '#/definitions/TimePeriod'
+      enabledDateTimePeriods:
+        type: array
+        description: An array of date time period during which this ContactMediumAssociation is enabled. Only takes effect if the ContactMediumAssociation is not disabled
+        items:
+          $ref: '#/definitions/TimePeriod'
+      disabledDateTimePeriods:
+        type: array
+        description: An array of date time period during which this ContactMediumAssociation is disabled. Only takes effect if the ContactMediumAssociation is not disabled
+        items:
+          $ref: '#/definitions/TimePeriod'
+      disabledWeekDayTimePeriods:
+        type: array
+        description: An array week day and an associated time period during which this ContactMediumAssociation is disabled. Only takes effect if the ContactMediumAssociation is not disabled
+        items:
+          $ref: '#/definitions/WeekDayTimePeriod'
+      '@type':
+        type: string
+        description: 'When sub-classing, this defines the sub-class entity name'
+  WeekDayTimePeriod:
+    type: object
+    required:
+      - weekday
+    properties:
+      start:
+        type: string
+        description: 'Start of the time period. eg 1997-07-16T19:20:30.45+01:00'
+      end:
+        type: string
+        description: 'End of the time period. eg 1997-07-16T19:20:30.45+01:00'
+      weekday:
+        type: integer
+        format: int32
+        description: Weekday is integer value  1-7, where 1 is Monday and 7 Sunday.
+        minimum: 1
+        maximum: 7
+        exclusiveMinimum: false
+        exclusiveMaximum: false
+  Error:
+    required:
+      - code
+      - reason
+    type: object
+    description: Used when an API throws an Error, typically with a HTTP error
+      response-code (3xx, 4xx, 5xx)
+    properties:
+      code:
+        type: string
+        description: Application relevant detail, defined in the API or a common list.
+      reason:
+        type: string
+        description: Explanation of the reason for the error which can be shown to a
+          client user.
+      message:
+        type: string
+        description: More details and corrective actions related to the error which can
+          be shown to a client user.
+      status:
+        type: string
+        description: HTTP Error code extension
+      referenceError:
+        type: string
+        description: URI of documentation describing the error.
+        format: uri
+      "@type":
+        type: string
+        description: When sub-classing, this defines the sub-class entity name.
